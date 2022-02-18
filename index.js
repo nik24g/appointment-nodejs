@@ -50,7 +50,6 @@ var socket = io.on('connection', function(socket){
   return socket
 })
 // app.post("/signup", async (req, res) => {
-//   var salt = crypto.randomBytes(16);
 //   const { email, username, name, password, repassword } = req.body;
 //   if (password != repassword) {
 //     res.send("password not matched");
@@ -68,16 +67,16 @@ var socket = io.on('connection', function(socket){
 //   const hashedPassword = await bcrypt.hash(password, 10);
 //   console.log(hashedPassword);
 //   if (result == undefined) {
-    // await connection.query(`
-    // INSERT INTO 
-    //   user (email, username, name, password) 
-    // VALUES
-    //   (
-    //     '${email}',
-    //     '${username}',
-    //     '${name}',
-    //     '${hashedPassword}'
-    //   )`);
+//     await connection.query(`
+//     INSERT INTO 
+//       user (email, username, name, password) 
+//     VALUES
+//       (
+//         '${email}',
+//         '${username}',
+//         '${name}',
+//         '${hashedPassword}'
+//       )`);
 //     socket.emit('1', "refferal")
 //     res.redirect("/");
 //   } else {
