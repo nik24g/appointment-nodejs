@@ -1,2 +1,11 @@
 <h1>hello</h1>
-{{!-- <script src="/static/js/index.js"></script> --}}
+<script>
+    const socket = io.connect('http://localhost:3000')
+    socket.on('connected', (message) => {
+        console.log(message)
+    })
+        
+    socket.on('incoming-request-2', (message) => {
+        console.log(message)
+    })
+</script>

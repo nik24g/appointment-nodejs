@@ -48,8 +48,10 @@
         box-shadow: 0px 0px 3px 4px grey;
         padding: 12px;
     }
+
     .dishbody h3,
-    .contactbody h3, .notibody h3 {
+    .notibody h3,
+    .contactbody h3 {
         width: fit-content;
         margin: auto;
     }
@@ -91,7 +93,7 @@
 <a href="#">
     <div class="a-container">
         <div class="aname">
-            <span>{{salon/name}}</span>
+            <span>{{currentUser/name}}</span>
         </div>
     </div>
 </a>
@@ -103,10 +105,8 @@
             <div class="name">{{this/time}}</div>
             {{#if this/available}}
             <div class="available">Available</div>
-            <button type="button" id="request-btn-{{this/id}}" onclick="request({{../currentUser/id}}, {{../salon/id}}, {{this/id}})" class="btn btn-outline-secondary">Request</button>
             {{else}}
             <div class="unavailable">Unavailable</div>
-            <button type="button" class="btn btn-outline-secondary disabled">Request</button>
             {{/if}}
         </div>
         {{/each}}
@@ -115,37 +115,55 @@
         <h3>Notifications</h3>
     </div>
     <div class="contactbody">
-        <h3>Contact</h3>
-        <div class="manager">Owner's name: {{salon/owner_name}}</div>
-        <div class="phone">Email: {{salon/email}}</div>
-        <div class="phone">Phone: {{salon/phone}}</div>
+        <h3>Details</h3>
+        <div class="manager">Owner's name: {{currentUser/owner_name}}</div>
+        <div class="phone">Email: {{currentUser/email}}</div>
+        <div class="phone">Phone: {{currentUser/phone}}</div>
     </div>
 </div>
+
 <script>
     let notibody = document.getElementById("noti")
+    var block_to_insert;
+    var myTimeout = {};
     const socket = io.connect('http://localhost:3000')
     socket.on('connected', (message) => {
         console.log(message)
     })
+        
+    socket.on('incoming-request-{{currentUser/id}}', (message) => {
+        var appointment_id = message.appointment_id
+        block_to_insert = document.createElement('div');
+        block_to_insert.className = 'dishitem';
+        block_to_insert.id = `dishitem-${message.appointment_id}`
+        block_to_insert.innerHTML = `
+            <div>
+                ${message.user.name}
+            </div>
+            <div>
+                ${message.timing}
+            </div>
+            <div>
+                <button type="button" onclick="accept(${message.appointment_id}, ${message.timing_id}, ${message.user.id})" class="btn btn-success"></button>
+                <button type="button" onclick="decline(${message.appointment_id}, ${message.timing_id}, ${message.user.id})" class="btn btn-danger"></button>
+            </div>
+        `;
+        notibody.appendChild(block_to_insert);
+        myTimeout[`${appointment_id}`] = setTimeout(decline, 10000, message.appointment_id, message.timing_id, message.user.id);
+        console.log(myTimeout)
+    })
     
-    function request(user_id, salon_id, timing_id){
-        socket.emit("request", {user_id: user_id, salon_id: salon_id, timing_id: timing_id})
-        document.getElementById(`request-btn-${timing_id}`).innerHTML = "Requested"
-        document.getElementById(`request-btn-${timing_id}`).className = "btn btn-outline-secondary disabled"
+    function accept(appointment_id, timing_id, user_id){
+        console.log("aa gya accept function", myTimeout[`${appointment_id}`])
+        socket.emit("accept-event", {appointment_id: appointment_id, timing_id: timing_id, user_id: user_id})
+        document.getElementById(`dishitem-${appointment_id}`).style.display = "none"
+        clearTimeout(myTimeout[`${appointment_id}`]);
     }
-    socket.on("request-accepted-{{currentUser/id}}", (message)=>{
-        var block_to_insert = document.createElement('div');
-        block_to_insert.className = 'dishitem';
-        block_to_insert.innerHTML = `<div>${message.message}</div>`
-        notibody.appendChild(block_to_insert);
-        console.log(message.message)
-    })
-    console.log("request-declined-{{currentUser/id}}")
-    socket.on("request-declined-{{currentUser/id}}", (message)=>{
-        var block_to_insert = document.createElement('div');
-        block_to_insert.className = 'dishitem';
-        block_to_insert.innerHTML = `<div>${message.message}</div>`
-        notibody.appendChild(block_to_insert);
-        console.log(message)
-    })
+    function decline(appointment_id, timing_id, user_id){
+        console.log("aa gya decline function", appointment_id)
+        socket.emit("decline-event", {appointment_id: appointment_id, timing_id: timing_id, user_id: user_id})
+        document.getElementById(`dishitem-${appointment_id}`).style.display = "none"
+        clearTimeout(myTimeout[`${appointment_id}`]);
+    }
+    
 </script>

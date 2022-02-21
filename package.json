@@ -17,6 +17,7 @@
     "express-handlebars": "^6.0.2",
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
