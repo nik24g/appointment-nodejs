@@ -117,10 +117,22 @@ var socket = io.on('connection', function(socket){
         })
       });
       var info = `Your appointment request in "${salon_query[0].name}" at time ${timing_query[0].time} is declined`
-      console.log(`request-declined-${user_id}`);
+      // console.log(`request-declined-${user_id}`);
       io.emit(`request-declined-${user_id}`, {message: info})
     }
   })
+
+  socket.on(`disable-slot`, (message)=>{
+    var timing_id = message.timing_id
+    var salon_id = message.salon_id
+    db.query(`UPDATE timings SET available = '0' WHERE id = '${timing_id}';`)
+  })
+  socket.on(`enable-slot`, (message)=>{
+    var timing_id = message.timing_id
+    var salon_id = message.salon_id
+    db.query(`UPDATE timings SET available = '1' WHERE id = '${timing_id}';`)
+  })
+
   return socket
 })
 

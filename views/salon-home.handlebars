@@ -105,8 +105,10 @@
             <div class="name">{{this/time}}</div>
             {{#if this/available}}
             <div class="available">Available</div>
+            <button type="button" id="request-btn-{{this/id}}" onclick="disable({{../currentUser/id}}, {{this/id}})" class="btn btn-outline-secondary">Disable</button>
             {{else}}
             <div class="unavailable">Unavailable</div>
+            <button type="button" onclick="enable({{../currentUser/id}}, {{this/id}})" class="btn btn-outline-secondary">Enable</button>
             {{/if}}
         </div>
         {{/each}}
@@ -164,6 +166,14 @@
         socket.emit("decline-event", {appointment_id: appointment_id, timing_id: timing_id, user_id: user_id})
         document.getElementById(`dishitem-${appointment_id}`).style.display = "none"
         clearTimeout(myTimeout[`${appointment_id}`]);
+    }
+    function disable(salon_id, timing_id){
+        socket.emit("disable-slot", {salon_id: salon_id, timing_id: timing_id})
+        location.reload()
+    }
+    function enable(salon_id, timing_id){
+        socket.emit("enable-slot", {salon_id: salon_id, timing_id: timing_id})
+        location.reload()
     }
     
 </script>

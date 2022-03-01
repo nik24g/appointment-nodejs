@@ -46,6 +46,8 @@ passport.use("salonStrategy", new LocalStrategy(function verify(username, passwo
         return cb(null, row[0]);
       });
     });
+    let time = new Date()
+    db.query(`UPDATE salons SET last_login = '${time.toISOString().slice(0, 10)} ${time.toLocaleTimeString()}' WHERE username = '${username}';`)
 }));
 
 router.use(async function(req,res,next){
