@@ -1,0 +1,57 @@
+<style>
+  .container {
+    padding: 15px 40px;
+    background: rgb(206, 206, 206);
+    border-radius: 12px;
+  }
+  .upper-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  h3 {
+    width: fit-content;
+    margin: auto;
+  }
+</style>
+<div class="container upper-container my-5">
+  <div class="default-slot">
+    <h3>Make Slots By Default</h3>
+    <form action="/salon/starting-day" method="post">
+      <div class="d-grid gap-2 col-6 mx-auto my-4">
+        <button class="btn btn-outline-primary" type="submit">Use Default</button>
+      </div>
+    </form>
+  </div>
+  <div class="holiday">
+    <h3>Press Button For Today's Holiday</h3>
+    <form action="/salon/holiday" method="post">
+      <div class="d-grid gap-2 col-6 mx-auto my-4">
+        <button class="btn btn-outline-success" type="submit">Enable Holiday</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container my-5">
+  <h3>Submit Form For Starting day</h3>
+  <form action="/salon/starting-day" method="post">
+    <div class="mb-3 row my-4">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Work Hour</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="staticEmail" name="work_hour"
+          placeholder="Enter how many hour You will work today" required>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Sitting Count</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" id="staticEmail" name="count"
+          placeholder="Enter Sitting count as per slot" required>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button class="btn btn-outline-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>

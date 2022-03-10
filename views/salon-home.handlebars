@@ -7,7 +7,12 @@
     body {
         font-family: 'Baloo Bhai 2', cursive;
     }
-
+    .upperbody{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 27px;
+    }
     .a-container {
         display: flex;
         align-items: center;
@@ -40,7 +45,8 @@
         box-shadow: 0px 0px 3px 4px grey;
         padding: 12px;
     }
-    .notibody{
+
+    .notibody {
         grid-area: notibody;
         background-color: #cfcfcf;
         margin: 21px 30px;
@@ -89,26 +95,52 @@
         height: 30px;
         line-height: 1;
     }
+    .sheet img{
+        width: 25px;
+    }
 </style>
-<a href="#">
-    <div class="a-container">
-        <div class="aname">
-            <span>{{currentUser/name}}</span>
+<div class="upperbody">
+    <a href="#">
+        <div class="a-container">
+            <div class="aname">
+                <span>{{currentUser/name}}</span>
+            </div>
         </div>
-    </div>
-</a>
+    </a>
+</div>
 <div class="midbody">
     <div class="dishbody">
         <h3>Timings</h3>
         {{#each timings}}
         <div class="dishitem">
-            <div class="name">{{this/time}}</div>
+            <div class="name">{{this/slot_time}}</div>
+            <div class="sheet">
+                {{#times this/count}}
+                <img src="/static/images/green-dot.png" alt="dot">
+                {{/times}}
+            </div>
             {{#if this/available}}
-            <div class="available">Available</div>
-            <button type="button" id="request-btn-{{this/id}}" onclick="disable({{../currentUser/id}}, {{this/id}})" class="btn btn-outline-secondary">Disable</button>
+                <div class="available">Available</div>
+                {{#ifEquals ../currentUser/slot_disable_count 0}}
+                    <button type="button" id="request-btn-{{this/id}}" class="btn btn-outline-secondary disabled">Disable</button>
+                {{else}}
+                    {{#ifEquals this/slot_type "one hour"}}
+                        {{#ifEquals ../currentUser/slot_disable_count 0.5}}
+                            <button type="button" id="request-btn-{{this/id}}" class="btn btn-outline-secondary disabled">Disable</button>
+                        {{else}}
+                            <button type="button" id="request-btn-{{this/id}}" onclick="disable({{../currentUser/id}}, {{this/id}}, '{{this/slot_type}}')" class="btn btn-outline-secondary">Disable</button>
+                        {{/ifEquals}}
+                    {{else}}
+                        <button type="button" id="request-btn-{{this/id}}" onclick="disable({{../currentUser/id}}, {{this/id}}, '{{this/slot_type}}')" class="btn btn-outline-secondary">Disable</button>
+                    {{/ifEquals}}
+                {{/ifEquals}}
             {{else}}
-            <div class="unavailable">Unavailable</div>
-            <button type="button" onclick="enable({{../currentUser/id}}, {{this/id}})" class="btn btn-outline-secondary">Enable</button>
+                <div class="unavailable">Unavailable</div>
+                {{#ifEquals this/status "Booked"}}
+                    <button type="button" class="btn btn-outline-secondary disabled">Enable</button>
+                {{else}}
+                    <button type="button" onclick="enable({{../currentUser/id}}, {{this/id}}, '{{this/slot_type}}')" class="btn btn-outline-secondary">Enable</button>
+                {{/ifEquals}}
             {{/if}}
         </div>
         {{/each}}
@@ -132,7 +164,7 @@
     socket.on('connected', (message) => {
         console.log(message)
     })
-        
+
     socket.on('incoming-request-{{currentUser/id}}', (message) => {
         var appointment_id = message.appointment_id
         block_to_insert = document.createElement('div');
@@ -154,26 +186,32 @@
         myTimeout[`${appointment_id}`] = setTimeout(decline, 10000, message.appointment_id, message.timing_id, message.user.id);
         console.log(myTimeout)
     })
-    
-    function accept(appointment_id, timing_id, user_id){
+    socket.on('reload-page-{{currentUser/id}}', ()=>{
+        location.reload()
+    })
+    function accept(appointment_id, timing_id, user_id) {
         console.log("aa gya accept function", myTimeout[`${appointment_id}`])
-        socket.emit("accept-event", {appointment_id: appointment_id, timing_id: timing_id, user_id: user_id})
+        socket.emit("accept-event", { appointment_id: appointment_id, timing_id: timing_id, user_id: user_id })
         document.getElementById(`dishitem-${appointment_id}`).style.display = "none"
         clearTimeout(myTimeout[`${appointment_id}`]);
     }
-    function decline(appointment_id, timing_id, user_id){
+    function decline(appointment_id, timing_id, user_id) {
         console.log("aa gya decline function", appointment_id)
-        socket.emit("decline-event", {appointment_id: appointment_id, timing_id: timing_id, user_id: user_id})
+        socket.emit("decline-event", { appointment_id: appointment_id, timing_id: timing_id, user_id: user_id })
         document.getElementById(`dishitem-${appointment_id}`).style.display = "none"
         clearTimeout(myTimeout[`${appointment_id}`]);
     }
-    function disable(salon_id, timing_id){
-        socket.emit("disable-slot", {salon_id: salon_id, timing_id: timing_id})
+    function disable(salon_id, timing_id, slot_type) {
+        socket.emit("disable-slot", { salon_id: salon_id, timing_id: timing_id, slot_type: slot_type })
         location.reload()
     }
-    function enable(salon_id, timing_id){
-        socket.emit("enable-slot", {salon_id: salon_id, timing_id: timing_id})
+    function enable(salon_id, timing_id, slot_type) {
+        console.log(slot_type)
+        socket.emit("enable-slot", { salon_id: salon_id, timing_id: timing_id, slot_type: slot_type })
         location.reload()
     }
-    
+    function createSlots(salon_id){
+        socket.emit("create-slot", {salon_id: salon_id})
+        console.log(salon_id)
+    }
 </script>

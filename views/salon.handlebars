@@ -87,6 +87,9 @@
         height: 30px;
         line-height: 1;
     }
+    .sheet img{
+        width: 25px;
+    }
 </style>
 <a href="#">
     <div class="a-container">
@@ -100,7 +103,12 @@
         <h3>Timings</h3>
         {{#each timings}}
         <div class="dishitem">
-            <div class="name">{{this/time}}</div>
+            <div class="name">{{this/slot_time}}</div>
+            <div class="sheet">
+                {{#times this/count}}
+                <img src="/static/images/green-dot.png" alt="dot">
+                {{/times}}
+            </div>
             {{#if this/available}}
             <div class="available">Available</div>
             <button type="button" id="request-btn-{{this/id}}" onclick="request({{../currentUser/id}}, {{../salon/id}}, {{this/id}})" class="btn btn-outline-secondary">Request</button>

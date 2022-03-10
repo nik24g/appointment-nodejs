@@ -145,7 +145,7 @@ router.get("/salon/:id", async(req, res)=>{
   // console.log(salon[0]);
 
   const timings = await new Promise((resolve, reject)=> {
-    db.query(`SELECT * FROM timings WHERE salon_id = '${salon[0].id}'`, (err, result)=> {
+    db.query(`SELECT * FROM timings WHERE salon_id = '${salon[0].id}' AND active = 1 ORDER BY position_count ASC`, (err, result)=> {
       if (err) throw err
       resolve(result);
     })
