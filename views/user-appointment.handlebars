@@ -1,0 +1,151 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .container {
+        background-color: #cfcfcf;
+        width: fit-content;
+        height: fit-content;
+        padding: 15px;
+        box-shadow: 0px 0px 3px 4px grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .inner-container,
+    .feedback-box {
+        background-color: whitesmoke;
+        padding: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        min-height: 230px;;
+    }
+    .inner-container div{
+        margin: 8px 0px;
+    }
+    .status img {
+        width: 15px;
+    }
+</style>
+<style>
+    fieldset,
+    label {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin: 10px;
+    }
+
+    /****** Style Star Rating Widget *****/
+
+    .rating {
+        border: none;
+        float: left;
+    }
+
+    .rating>input {
+        display: none;
+    }
+
+    .rating>label:before {
+        margin: 5px;
+        font-size: 1.25em;
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f005";
+    }
+
+    .rating>.half:before {
+        content: "\f089";
+        position: absolute;
+    }
+
+    .rating>label {
+        color: #ddd;
+        float: right;
+    }
+
+    /***** CSS Magic to Highlight Stars on Hover *****/
+
+    .rating>input:checked~label,
+    /* show gold star when clicked */
+    .rating:not(:checked)>label:hover,
+    /* hover current star */
+    .rating:not(:checked)>label:hover~label {
+        color: #FFD700;
+    }
+
+    /* hover previous stars in list */
+
+    .rating>input:checked+label:hover,
+    /* hover current star when changing rating */
+    .rating>input:checked~label:hover,
+    .rating>label:hover~input:checked~label,
+    /* lighten current selection */
+    .rating>input:checked~label:hover~label {
+        color: #FFED85;
+    }
+</style>
+<div class="container my-3">
+    <div class="inner-container">
+        <div class="date-time">Date: {{appointment/date}}, Slot time: {{timing/slot_time}}</div>
+        <div class="salon">Salon Name: {{salon/name}}</div>
+        <div class="address">Address: {{salon/address}}</div>
+        {{#ifEquals appointment/status "accepted"}}
+        <div class="status">Status: Active <img src="/static/images/green-dot.png" alt="active"></div>
+        {{/ifEquals}}
+        {{#ifEquals appointment/status "pending"}}
+        <div class="status">Status: Pending <img src="/static/images/yellow-dot.ico" alt="pending"></div>
+        {{/ifEquals}}
+        {{#ifEquals appointment/status "declined"}}
+        <div class="status">Status: Declined <img src="/static/images/red-dot.ico" alt="declined"></div>
+        {{/ifEquals}}
+        {{#ifEquals appointment/status "completed"}}
+        <div class="status">Status: Completed <img src="/static/images/blue-dot.ico" alt="completed"></div>
+        {{/ifEquals}}
+    </div>
+
+    {{#ifEquals appointment/status "completed"}}
+    {{#unless rating}}
+        <form action="/user/rating" method="post">
+        <div class="feedback-box">
+            <input type="hidden" name="appointmentId" value="{{appointment/id}}">
+            <input type="hidden" name="salonId" value="{{salon/id}}">
+            <input type="hidden" name="userId" value="{{currentUser/id}}">
+            <fieldset class="rating">
+                <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"
+                    title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half"
+                    for="star4half" title="Pretty good - 4.5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"
+                    title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half"
+                    for="star3half" title="Meh - 3.5 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3"
+                    title="Meh - 3 stars"></label>
+                <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half"
+                    for="star2half" title="Kinda bad - 2.5 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"
+                    title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half"
+                    for="star1half" title="Meh - 1.5 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"
+                    title="Sucks big time - 1 star"></label>
+                <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf"
+                    title="Sucks big time - 0.5 stars"></label>
+            </fieldset>
+            <div class="message"><textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-success my-2">Give Rating</button>
+        </div>
+    </form>
+    {{/unless}}
+    {{/ifEquals}}
+</div>

@@ -7,6 +7,7 @@ const router = express.Router();
 const session = require("express-session");
 const { create_work } = require("../models/salon");
 const { create_slots } = require("../models/slots");
+const { response } = require("express");
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -16,6 +17,16 @@ const db = mysql.createConnection({
   encoding: "utf8mb4",
   multipleStatements: true
 });
+
+function is_authenticated(req){
+  if (req.user == undefined){
+    return true
+  }
+  else{
+    return false
+  }
+}
+
 router.use(passport.initialize());
 router.use(passport.session());
 router.use(passport.authenticate("session"));
@@ -159,7 +170,7 @@ router.get("/", async (req, res) => {
       }
     );
   });
-  console.log(req.user.isSlotsAlloted);
+  // console.log(req.user.isSlotsAlloted);
   if (!req.user.isSlotsAlloted) {
     return res.redirect("/salon/starting-day");
   }
@@ -483,6 +494,111 @@ router.post("/custom-slots", async (req, res) => {
       })
     }
   });
+});
+
+router.get("/appointments", async (req, res)=>{
+  if (is_authenticated(req)){
+    return res.redirect("/salon/login")
+  }
+  let payload = {}
+  let payloadList = []
+  var options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  let currentDate = new Date().toLocaleDateString('hi-IN', options).split("/").reverse().join("-")
+  let getAppointmentQuery = `SELECT * FROM appointments WHERE salon_id = '${req.user.id}' AND (status = 'accepted' OR status = 'completed') AND date = '${currentDate}';`
+
+  let appointments = await new Promise((resolve, reject)=> {
+    db.query(getAppointmentQuery, async (err, result) => {
+      if (err) throw err
+      resolve(result)
+    })
+  });
+  for (const i of appointments) {
+    let lobject = {}
+    lobject.id = i.id
+    lobject.status = i.status
+    lobject.date = i.date.toLocaleDateString()
+    
+    const name = await new Promise((resolve, reject)=> {
+      db.query(`SELECT * FROM users WHERE id = '${i.user_id}'`, (err, result)=>{
+        if (err) throw err
+        resolve(result[0].name);
+        lobject.name = result[0].name
+      })
+    });
+    const slot_time = await new Promise((resolve, reject)=> {
+      db.query(`SELECT * FROM timings WHERE id = '${i.timing_id}'`, (err, result)=>{
+        if (err) throw err
+        resolve(result[0].slot_time);
+        lobject.slot_time = result[0].slot_time
+      })
+    });
+    payloadList.push(lobject)
+  }
+  payload.appointments = payloadList
+  return res.render("salon-appointments", payload)
+})
+
+router.post("/appointment/completed", async (req, res)=>{
+  let appointmentId = req.body.appointmentId
+  await new Promise((resolve, reject)=> {
+    db.query(`UPDATE appointments SET status = 'completed', active_status = 0 WHERE id = '${appointmentId}';`, (err, result)=>{
+      if (err) throw err
+      resolve(result);
+    })
+  });
+  let payload = {response : "done"}
+  return res.send(payload)
+})
+
+
+// Itegration start 
+router.get("/slots", async (req, res) => {
+  if (req.user == undefined) {
+    return res.redirect("/salon/login");
+  }
+  if (req.user.isHoliday) {
+    return res.redirect("/salon/holiday");
+  }
+  if (!req.user.isSlotsAlloted) {
+    return res.redirect("/salon/starting-day");
+  }
+
+  const timings = await new Promise((resolve, reject) => {
+    db.query(
+      `SELECT * FROM timings WHERE salon_id = '${req.user.id}' AND active = 1 ORDER BY position_count ASC`,
+      (err, result) => {
+        if (err) throw err;
+        resolve(result);
+      }
+    );
+  });
+
+  const default_work_hour = await new Promise((resolve, reject) => {
+    db.query(`SELECT * FROM default_work_hour WHERE salon_id = ${req.user.id} and active = 1`, (err, result) => {
+        if (err) throw err
+        resolve(result[0]);
+    })
+  });
+  const work_hour = await new Promise((resolve, reject) => {
+      db.query(`SELECT * FROM work_hour WHERE salon_id = ${req.user.id} and active = 1`, (err, result) => {
+          if (err) throw err
+          resolve(result[0]);
+      })
+  });
+
+
+  let totalSittingCount;
+  let totalWorkHour;
+  if (work_hour == undefined) {
+    totalSittingCount = default_work_hour.count;
+    totalWorkHour = default_work_hour.hour;
+  }
+  else{
+    totalSittingCount = work_hour.count;
+    totalWorkHour = work_hour.hour;
+  }
+  let total = {totalSittingCount: totalSittingCount, totalWorkHour: totalWorkHour}
+  return res.render("salon-slots", { layout: 'salon-layout', timings: JSON.stringify(timings),  total: JSON.stringify(total)});
 });
 module.exports = router;
 

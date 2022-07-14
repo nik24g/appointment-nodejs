@@ -1,0 +1,98 @@
+[
+    {
+        "id": 67,
+        "slot_time": "12:00 pm-12:30 pm",
+        "slot_type": "half hour",
+        "position_count": 1,
+        "salon_id": 1,
+        "available": 0,
+        "count": 4,
+        "active": 1,
+        "status": "Disabled",
+        "date": "2022-05-11T18:30:00.000Z"
+    },
+    {
+        "id": 68,
+        "slot_time": "12:30 pm-1:00 pm",
+        "slot_type": "half hour",
+        "position_count": 1.5,
+        "salon_id": 1,
+        "available": 1,
+        "count": 4,
+        "active": 1,
+        "status": "Initilized",
+        "date": "2022-05-11T18:30:00.000Z"
+    },
+    {
+        "id": 60,
+        "slot_time": "1:00 pm-2:00 pm",
+        "slot_type": "one hour",
+        "position_count": 2,
+        "salon_id": 1,
+        "available": 1,
+        "count": 4,
+        "active": 1,
+        "status": "Initilized",
+        "date": "2022-05-11T18:30:00.000Z"
+    },
+    {
+        "id": 61,
+        "slot_time": "2:00 pm-2:30 pm",
+        "slot_type": "half hour",
+        "position_count": 3,
+        "salon_id": 1,
+        "available": 1,
+        "count": 4,
+        "active": 1,
+        "status": "Initilized",
+        "date": "2022-05-11T18:30:00.000Z"
+    },
+    {
+        "id": 69,
+        "slot_time": "2:30 pm-3:30 pm",
+        "slot_type": "one hour",
+        "position_count": 4,
+        "salon_id": 1,
+        "available": 1,
+        "count": 4,
+        "active": 1,
+        "status": "Initilized",
+        "date": "2022-05-11T18:30:00.000Z"
+    },
+    {
+        "id": 64,
+        "slot_time": "3:30 pm-4:00 pm",
+        "slot_type": "half hour",
+        "position_count": 6,
+        "salon_id": 1,
+        "available": 1,
+        "count": 4,
+        "active": 1,
+        "status": "Initilized",
+        "date": "2022-05-11T18:30:00.000Z"
+    },
+    {
+        "id": 65,
+        "slot_time": "4:00 pm-4:30 pm",
+        "slot_type": "half hour",
+        "position_count": 7,
+        "salon_id": 1,
+        "available": 1,
+        "count": 4,
+        "active": 1,
+        "status": "Initilized",
+        "date": "2022-05-11T18:30:00.000Z"
+    },
+    {
+        "id": 66,
+        "slot_time": "4:30 pm-5:00 pm",
+        "slot_type": "half hour",
+        "position_count": 8,
+        "salon_id": 1,
+        "available": 1,
+        "count": 4,
+        "active": 1,
+        "status": "Initilized",
+        "date": "2022-05-11T18:30:00.000Z"
+    }
+]

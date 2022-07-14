@@ -1,0 +1,815 @@
+@media screen and (max-width:767px) {
+
+    #image {
+        background: url("https://res.cloudinary.com/dxybglkfr/image/upload/v1641794576/grooomer_logo_30_trans_o4kl3g.png") no-repeat;
+        opacity: 0.9;
+        background-position-x: -100px;
+        background-position-y: 750px;
+    }
+
+    .final-bgm-for-about-page-to-mbl {
+        overflow: hidden;
+    }
+
+    .card-container-for-about-page {
+        display: none;
+    }
+
+    .footer-container-for-about-page {
+        display: none;
+    }
+
+    .about-us-container-to-mbl {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .about-us-card-to-mbl {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-us-image-card-to-mbl {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+    }
+
+    .about-image-to-mbl {
+        width: 170px;
+        height: 160px;
+    }
+
+    .about-us-heading-to-mbl {
+        width: 80%;
+        font-family: 'roboto', Sans-Serif;
+        color: #022C43;
+        font-weight: 600;
+        font-size: 16px;
+        align-self: flex-end;
+        margin-bottom: 1em;
+    }
+
+    .about-us-paragraph-to-mbl {
+        font-family: 'Popins', Sans-Serif;
+        width: 90%;
+        text-align: left;
+        font-size: 14px;
+
+    }
+
+
+    .about-groomer-heading-to-mbl {
+
+        font-family: 'roboto', Sans-Serif;
+        color: #022C43;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .groomer-bg-img {
+        position: relative;
+        /* height: 10px; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .about-groomer-image-container-to-mbl {
+        background-image: url("https://res.cloudinary.com/dxybglkfr/image/upload/v1641887540/Untitled_design-removebg-preview_dmssb4.png");
+        background-size: cover;
+        width: 150px;
+
+    }
+
+    .about-groomer-container-to-mbl {
+        display: flex;
+        flex-direction: column;
+        flex-direction: center;
+
+    }
+
+    .about-groomer-description-card-to-mbl {
+        width: 95vw;
+        text-align: center;
+        padding: 10px;
+        padding-left: 10px;
+
+    }
+
+    .about-groomer-description-to-mbl {
+        font-family: 'Popins', Sans-Serif;
+        font-size: 14px;
+        text-align: center;
+        display: flex;
+        padding-top: -50px;
+
+    }
+
+    .about-groomer-sign-to-mbl {
+        font-family: 'Popins', Sans-Serif;
+        margin-top: 18px;
+        font-size: 14px;
+        text-align: end;
+    }
+
+    .visit-button-to-mbl {
+        margin-top: 30px;
+        color: white;
+        background-color: #00BDAB;
+        padding: 7px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Popins', Sans-Serif;
+        border: 0px;
+        width: 100px;
+    }
+
+    .mission-values-section-to-mbl {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+    }
+
+    .mission-values-image-card-to-mbl {
+        background-color: #d3f0ed;
+        width: 50%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .mission-values-image-to-mbl {
+        height: 100px;
+        width: 100px;
+        margin-top: 20px;
+    }
+
+    .mission-values-heading-card-to-mbl {
+        width: 45%;
+        height: 200px;
+        padding: 10px;
+        padding-top: 20px;
+        background-color: #d3f0ed;
+        text-align: center;
+
+    }
+
+    .mission-values-heading-to-mbl {
+        font-family: 'roboto', Sans-Serif;
+        font-size: 16px;
+        color: #022C43;
+        font-weight: bold;
+
+    }
+
+    .mission-values-green-box-to-mbl {
+        background-color: #00BDAB;
+        width: 30%;
+        height: 200px;
+    }
+
+    .meet-our-leadership-team-heading1-to-mbl {
+        font-family: 'roboto', Sans-Serif;
+        font-size: 12px;
+        color: #022C43;
+        font-weight: bold;
+    }
+
+    .meet-our-leadership-team-inner-container1-to-mbl {
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        background-color: #00BDAB;
+        height: 35px;
+        margin-bottom: 30px;
+        /* width: 100vh; */
+        /* width: 100%; */
+
+        /* margin-right: 100px; */
+    }
+
+    .meet-our-leadership-team-inner-cards-to-mbl {
+        background-color: #ffffff;
+        width: 80px;
+        height: 80px;
+        border-radius: 15px;
+        margin-top: 80px;
+        margin-left: 18px;
+        margin-right: 18px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .members-images-to-mbl {
+        height: 45px;
+        width: 45px;
+        border-radius: 30px;
+        margin-bottom: 25px;
+        margin-top: 5px;
+    }
+
+    .meet-our-leadership-team-inner-card-text-to-mbl {
+        font-family: 'Popins', Sans-Serif;
+        margin-top: -15px;
+        font-size: 10px;
+        text-align: center;
+
+    }
+
+    .meet-our-leadership-team-heading2-to-mbl {
+        font-family: 'roboto', Sans-Serif;
+        font-size: 12px;
+        color: #022C43;
+        font-weight: bold;
+        margin-top: 20px;
+
+    }
+
+    .meet-our-leadership-team-inner-container2-to-mbl {
+        background-color: #00BDAB;
+        height: 60px;
+        width: 100vw;
+        width: 100%;
+        margin-bottom: 50px;
+        /* margin-right: 100px; */
+    }
+
+    .meet-our-leadership-team-inner-cards-two-to-mbl {
+        background-color: #ffffff;
+        width: 250px;
+        height: 50px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 35px;
+        margin-left: 15px;
+        margin-right: 15px;
+        /* margin-bottom: 50px; */
+    }
+
+    .meet-our-leadership-team-inner-card-text-two-to-mbl {
+        font-family: 'Popins', Sans-Serif;
+        font-size: 12px;
+
+    }
+
+    .site-footer {
+        background-color: #022c43;
+        padding: 45px 0 20px;
+        font-size: 15px;
+        margin-bottom: 20px;
+        color: #ffffff;
+
+
+    }
+
+    .site-footer hr {
+        border-top-color: #bbb;
+        opacity: 0.5
+    }
+
+    .site-footer hr.small {
+        margin: 20px 0
+    }
+
+    .site-footer h6 {
+        color: #00BDAB;
+        font-size: 16px;
+        text-transform: uppercase;
+        margin-top: 5px;
+        letter-spacing: 2px
+    }
+
+    .site-footer a {
+
+        color: #00BDAB;
+    }
+
+    .site-footer a:hover {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .footer-links {
+        padding-left: 10px;
+        list-style: none
+    }
+
+    .footer-links li {
+        display: block
+    }
+
+    .footer-links a {
+        color: #ffffff
+    }
+
+    .footer-links a:active,
+    .footer-links a:focus,
+    .footer-links a:hover {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .footer-links.inline li {
+        display: inline-block
+    }
+
+    .site-footer {
+        text-align: center
+    }
+
+    .site-footer .social-icons a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 6px;
+        margin-right: 0;
+        border-radius: 100%;
+        background-color: #33353d
+    }
+
+    .copyright-text {
+        margin: 0
+    }
+    @media(min-width:567px){
+        .site-footer{
+            display: block !important;
+        }
+    }
+
+    @media (max-width:991px) {
+        .site-footer [class^=col-] {
+            margin-bottom: 30px
+        }
+    }
+
+    @media (max-width:767px) {
+        .site-footer {
+            padding-bottom: 20px
+        }
+
+        .site-footer .copyright-text,
+        .site-footer {
+            text-align: center
+        }
+    }
+
+    .draft-footer {
+        font-family: "Popins", Sans-Serif;
+        font-size: 12px;
+
+    }
+
+    .spaceing-for-footer {
+        padding-left: 100px;
+    }
+}
+
+@media (max-width:991px) {
+    .site-footer [class^=col-] {
+        margin-bottom: 30px
+    }
+}
+
+@media (max-width:767px) {
+    .site-footer {
+        padding-bottom: 20px
+    }
+
+    .site-footer .copyright-text,
+    .site-footer {
+        text-align: center
+    }
+}
+
+@media screen and (max-width:768px) {
+    .card-container-for-about-page {
+        width: 700px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .final-bgm-for-about-page-to-mbl {
+        display: none;
+    }
+
+    #image {
+        background: url("https://res.cloudinary.com/dxybglkfr/image/upload/v1641794576/grooomer_logo_30_trans_o4kl3g.png") no-repeat;
+        background-position-x: -120px;
+        background-position-y: 1350px;
+        opacity: 0.9;
+        background-size: 60% auto;
+        position: relative;
+    }
+
+
+    .about-us-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .about-us-card {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .about-us-image {
+        width: 30%;
+        display: flex;
+        flex-direction: color;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .about-image {
+        width: 400px;
+        height: 400px;
+    }
+
+    .about-us-heading {
+        width: 80%;
+        font-family: 'roboto', Sans-Serif;
+        color: #022C43;
+        font-weight: 600;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .about-us-paragraph {
+        font-family: 'Popins', Sans-Serif;
+        margin-top: 18px;
+        width: 80%;
+        text-align: center;
+
+    }
+
+    .about-groomer-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+    }
+
+    .about-groomer-image-card {
+        width: 30%;
+        display: flex;
+        flex-direction: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .groomer-image {
+        height: 100%;
+        width: 100%;
+        opacity: 0.7;
+
+    }
+
+    .about-groomer-card {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .about-groomer-heading {
+        width: 80%;
+        font-family: 'roboto', Sans-Serif;
+        color: #022C43;
+        font-weight: 600;
+        font-size: 30px;
+    }
+
+    .about-groomer-description {
+        font-family: 'Popins', Sans-Serif;
+        margin-top: 18px;
+        width: 80%;
+        text-align: center;
+
+    }
+
+    .about-groomer-sign {
+        font-family: 'Popins', Sans-Serif;
+        margin-top: 18px;
+        width: 80%;
+        text-align: end;
+    }
+
+    .visit-button {
+        margin-top: 30px;
+        color: white;
+        background-color: #00BDAB;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding: 10px;
+        width: 200px;
+        border-radius: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: 'Popins', Sans-Serif;
+        border: 0px;
+        width: 130px;
+    }
+
+    .mission-values-section {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .mission-values-image-card {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+        background-color: #d3f0ed;
+        height: 500px;
+
+    }
+
+    .mission-values-heading-card {
+        width: 25%;
+        height: 500px;
+        padding: 10px;
+        padding-top: 20px;
+        background-color: #d3f0ed;
+
+    }
+
+    .mission-values-heading {
+        font-family: 'roboto', Sans-Serif;
+        font-size: 25px;
+        color: #022C43;
+        font-weight: bold;
+
+    }
+
+    .mission-values-green-box {
+        background-color: #00BDAB;
+        width: 25%;
+        height: 500px;
+    }
+
+    .meet-our-leadership-team-inner-cards {
+        margin-left: 30px;
+    }
+
+    .meet-our-leadership-team-inner-cards-two {
+        margin-left: 50px;
+    }
+
+    .card-container-for-about-page {
+        padding-bottom: 75px;
+    }
+
+    .site-footer {
+        padding-bottom: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .site-footer .copyright-text,
+    .site-footer {
+        text-align: center
+    }
+
+    .footer-container-for-about-page {
+        margin-top: 10px;
+    }
+
+    .footer-links {
+        margin-bottom: 2px;
+    }
+
+    .footer-groomer-heading {
+        font-size: 50px;
+    }
+
+    .footer-groomer-tag {
+        font-size: 20px;
+    }
+
+    .card-container-for-about-page {
+
+        background-color: #ffffff;
+        border-radius: 25px;
+        padding-bottom: 100px;
+    }
+
+
+    .meet-our-leadership-team-heading1 {
+        font-family: 'roboto', Sans-Serif;
+        font-size: 20px;
+        color: #022C43;
+        font-weight: bold;
+
+
+    }
+
+
+    .meet-our-leadership-team-inner-container1 {
+        background-color: #00BDAB;
+        height: 80px;
+        width: 100vw;
+        width: 100%;
+        /* margin-right: 100px; */
+    }
+
+
+    .meet-our-leadership-team-inner-cards {
+        background-color: #ffffff;
+        width: 150px;
+        height: 150px;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .members-images {
+        height: 80px;
+        width: 80px;
+        border-radius: 65px;
+        margin-bottom: 30px;
+    }
+
+
+    .meet-our-leadership-team-inner-card-text {
+        font-family: 'Popins', Sans-Serif;
+        font-size: 16px;
+
+    }
+
+
+    .second-container {
+        margin-top: 200px;
+    }
+
+    .meet-our-leadership-team-inner-card-text-two {
+        font-family: 'Popins', Sans-Serif;
+        font-size: 16px;
+
+    }
+
+    .meet-our-leadership-team-inner-container2 {
+        background-color: #00BDAB;
+        height: 80px;
+        width: 100vw;
+        width: 100%;
+        /* margin-right: 100px; */
+    }
+
+    .meet-our-leadership-team-heading2 {
+        font-family: 'roboto', Sans-Serif;
+        font-size: 20px;
+        color: #022C43;
+        font-weight: bold;
+
+    }
+
+    .meet-our-leadership-team-inner-cards-two {
+        background-color: #ffffff;
+        width: 250px;
+        height: 70px;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-container-for-about-page {
+        height: 100px;
+        width: 100vw;
+        width: 100%;
+        border-radius: 20px;
+        background-color: #022C43;
+        margin-top: 50px;
+
+
+
+    }
+
+    .footer-heading-about-page {
+        font-family: 'Popins', Sans-Serif;
+        font-size: 22px;
+        color: #ffffff;
+    }
+
+    .footer-groomer-heading {
+        font-size: 65px;
+        text-align: center;
+    }
+
+    .site-footer {
+        background-color: #022c43;
+        padding: 45px 0 20px;
+        font-size: 15px;
+        border-radius: 25px;
+        color: #ffffff;
+
+
+    }
+
+    .site-footer hr {
+        border-top-color: #bbb;
+        opacity: 0.5
+    }
+
+    .site-footer hr.small {
+        margin: 20px 0
+    }
+
+    .site-footer h6 {
+        color: #00BDAB;
+        font-size: 16px;
+        text-transform: uppercase;
+        margin-top: 5px;
+        letter-spacing: 2px
+    }
+
+    .site-footer a {
+
+        color: #00BDAB;
+    }
+
+    .site-footer a:hover {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .footer-links {
+        padding-left: 0;
+        list-style: none
+    }
+
+    .footer-links li {
+        display: block
+    }
+
+    .footer-links a {
+        color: #ffffff
+    }
+
+    .footer-links a:active,
+    .footer-links a:focus,
+    .footer-links a:hover {
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .footer-links.inline li {
+        display: inline-block
+    }
+
+    .site-footer {
+        text-align: center
+    }
+
+    .site-footer .social-icons a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 6px;
+        margin-right: 0;
+        border-radius: 100%;
+        background-color: #33353d
+    }
+
+    .copyright-text {
+        margin: 0
+    }
+
+}

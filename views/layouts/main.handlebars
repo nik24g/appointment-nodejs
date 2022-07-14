@@ -12,6 +12,14 @@
     <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <title>Home</title>
     <style>
+        *{
+            color: black;
+            list-style: none;
+            text-decoration: none;
+        }
+        a{
+            text-decoration: none;
+        }
         body {
             background: #e1e1e1;
         }
@@ -33,11 +41,25 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/user">Home</a>
-                    </li>
-                </ul>
+                {{#if currentUser/owner_name}}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/salon">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/salon/appointments">Todays Appointments</a>
+                        </li>
+                    </ul>
+                {{else}}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/user">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/user/appointments">My Appointments</a>
+                        </li>
+                    </ul>
+                {{/if}}
 
                 {{#if currentUser}}
                 <div class="btn-group mx-3">
@@ -46,9 +68,13 @@
                         {{currentUser/name}}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/salon/custom-slots">Create Custom slots</a></li>
-                        <li><a class="dropdown-item" href="/salon/profile">Profile</a></li>
-                        <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                        {{#if currentUser/owner_name}}
+                            <li><a class="dropdown-item" href="/salon/custom-slots">Create Custom slots</a></li>
+                            <li><a class="dropdown-item" href="/salon/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/salon/logout">Logout</a></li>
+                        {{else}}
+                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                        {{/if}}
                     </ul>
                 </div>
                 {{else}}
@@ -69,19 +95,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-    {{!-- <script>
-        const socket = io.connect('http://localhost:3000')
-        let name = "nik"
-        socket.emit(`user-joined`, name)
-        socket.on('connected', (name) => {
-            console.log(name)
-        })
-        socket.emit('noti')
-        socket.on('1', (name) => {
-            console.log('ye ho gya')
-            console.log(name)
-        })
-    </script> --}}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 
 </html>

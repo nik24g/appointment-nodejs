@@ -113,7 +113,7 @@ var socket = io.on('connection', function(socket){
       })
     });
     if (appointment_status == "pending"){
-      db.query(`UPDATE appointments SET status = 'decline', active_status = 0 WHERE id = '${appointment_id}';`)
+      db.query(`UPDATE appointments SET status = 'declined', active_status = 0 WHERE id = '${appointment_id}';`)
       
       const timing_query = await new Promise((resolve, reject)=> {
         db.query(`SELECT * FROM timings WHERE id = '${timing_id}'`, (err, result)=> {
@@ -144,7 +144,7 @@ var socket = io.on('connection', function(socket){
     else{
       update_count = 0.5
     }
-    console.log(slot_type)
+    console.log(slot_type, salon_id, update_count)
     db.query(`UPDATE timings SET available = '0', status = "Disabled" WHERE id = '${timing_id}';`)
     db.query(`UPDATE salons SET slot_disable_count = slot_disable_count - '${update_count}' WHERE id = '${salon_id}';`)
   })
@@ -160,6 +160,7 @@ var socket = io.on('connection', function(socket){
     else{
       update_count = 0.5
     }
+    console.log(slot_type, salon_id, update_count)
     db.query(`UPDATE timings SET available = '1', status = "Enabled" WHERE id = '${timing_id}';`)
     db.query(`UPDATE salons SET slot_disable_count = slot_disable_count + '${update_count}' WHERE id = '${salon_id}';`)
   })
@@ -192,7 +193,45 @@ Handlebars.registerHelper('times', function(n, block) {
       accum += block.fn(i);
   return accum;
 });
-
+// Handlebars.registerHelper('times', function(time, segment) {
+//   wholetime = time.split("-")[0]
+//   timeConvention = wholetime.split(" ")[1]
+//   maintime = wholetime.split(" ")[0].split(":")[0]
+//   if (segment == "morning"){
+//     if (timeConvention == "pm"){
+//       return false
+//     }
+//     else{
+//       return true
+//     }
+//   }
+//   if (segment == "afternoon"){
+//     if (timeConvention == "am"){
+//       return false
+//     }
+//     else{
+//       if (maintime <= 6){
+//         return true
+//       }
+//       else{
+//         return false
+//       }
+//     }
+//   }
+//   if (segment == "evening"){
+//     if (timeConvention == "am"){
+//       return false
+//     }
+//     else{
+//       if (maintime <= 6){
+//         return false
+//       }
+//       else{
+//         return true
+//       }
+//     }
+//   }
+// });
 
 httpServer.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
