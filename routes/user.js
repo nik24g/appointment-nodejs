@@ -81,7 +81,7 @@ router.use(async function (req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/user',
+  successRedirect: '/user/all-salons',
   failureRedirect: '/user/login'
 }));
 

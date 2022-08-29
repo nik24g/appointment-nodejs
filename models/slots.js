@@ -17,11 +17,11 @@ function create_time(hour){
     let half_hour_values = []
 
     let start_hour = new Date()
-    start_hour.setHours(12)
+    start_hour.setHours(13)
     start_hour.setMinutes(00)
 
     let last_hour = new Date()
-    last_hour.setHours(12)
+    last_hour.setHours(13)
     last_hour.setMinutes(00)
 
     for (let index = 0; index < num_one_hour; index++) {
